@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل كيفا بالعربية — Kiva Arabic Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00783C;
+    --green-light: #EAF3DE;
+    --green-mid: #97C459;
+    --green-dark: #27500A;
+    --green-darker: #173404;
+    --blue-light: #E6F1FB;
+    --blue-mid: #85B7EB;
+    --blue-dark: #0C447C;
+    --amber-light: #FAEEDA;
+    --amber-dark: #633806;
+    --bg: #ffffff;
+    --bg-secondary: #f5f5f2;
+    --border: rgba(0,0,0,0.12);
+    --border-soft: rgba(0,0,0,0.07);
+    --text: #1a1a18;
+    --text-muted: #6b6b66;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18;
+      --bg-secondary: #242422;
+      --border: rgba(255,255,255,0.12);
+      --border-soft: rgba(255,255,255,0.07);
+      --text: #f0ede8;
+      --text-muted: #9a9a94;
+      --green-light: #0d2a14;
+      --green-dark: #9fe8b0;
+      --green-darker: #c5f5d0;
+      --blue-light: #0a1e2e;
+      --blue-dark: #90c4f5;
+      --amber-light: #2a1c05;
+      --amber-dark: #f5c97a;
+    }
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg-secondary);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 48px;
+  }
+
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .kiva-header {
+    background: var(--green);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem 1.75rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .klogo { display: flex; align-items: center; gap: 10px; }
+  .klogo-icon {
+    background: white; border-radius: 8px; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 700; color: var(--green);
+  }
+  .klogo-text { color: white; font-size: 19px; font-weight: 500; }
+  .kiva-header-ar { text-align: right; color: rgba(255,255,255,0.88); font-family: 'Cairo', sans-serif; font-size: 14px; line-height: 1.6; }
+  .kiva-header-ar strong { color: white; font-weight: 700; font-size: 16px; display: block; margin-bottom: 2px; }
+
+  /* Language notice */
+  .lang-notice {
+    background: var(--green-light); border: 0.5px solid var(--green-mid);
+    border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 1rem;
+    display: flex; align-items: flex-start; gap: 10px; direction: rtl;
+  }
+  .lang-notice-icon { color: var(--green-dark); font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .lang-notice-text { font-family: 'Cairo', sans-serif; font-size: 13px; color: var(--green-dark); line-height: 1.85; text-align: right; }
+  .lang-notice-text strong { font-weight: 700; font-size: 14px; display: block; margin-bottom: 2px; color: var(--green-darker); }
+
+  /* Link banner */
+  .link-banner {
+    background: var(--green); border-radius: var(--radius-md); padding: 14px 18px;
+    margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .link-banner-ar { font-family: 'Cairo', sans-serif; color: white; font-size: 14px; font-weight: 600; direction: rtl; }
+  .link-banner-ar span { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.8); display: block; margin-top: 2px; }
+  .link-banner-btn {
+    background: white; color: var(--green); border: none; padding: 8px 16px; border-radius: 50px;
+    font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    display: flex; align-items: center; gap: 6px; font-family: 'IBM Plex Sans', sans-serif;
+    text-decoration: none;
+  }
+  .link-banner-btn:hover { opacity: 0.9; }
+
+  /* Stats */
+  .stat-row { display: flex; gap: 10px; margin-bottom: 1rem; }
+  .stat-card {
+    flex: 1; background: var(--bg); border: 0.5px solid var(--border-soft);
+    border-radius: var(--radius-md); padding: 12px; text-align: center;
+  }
+  .stat-num { font-size: 20px; font-weight: 500; color: var(--green); font-family: 'IBM Plex Sans', sans-serif; }
+  .stat-label { font-family: 'Cairo', sans-serif; font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  /* Tabs */
+  .tab-bar { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 7px 14px; border-radius: 50px; font-size: 13px; font-weight: 500; cursor: pointer;
+    border: 0.5px solid var(--border); background: var(--bg); color: var(--text-muted);
+    transition: all 0.15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .tab-btn.active { background: var(--green); color: white; border-color: var(--green); }
+  .tab-btn:hover:not(.active) { background: var(--bg-secondary); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Profile steps */
+  .profile-step {
+    background: var(--bg); border: 0.5px solid var(--border-soft);
+    border-radius: var(--radius-lg); margin-bottom: 12px; overflow: hidden;
+  }
+  .ps-header {
+    display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+    background: var(--bg-secondary); border-bottom: 0.5px solid var(--border-soft);
+  }
+  .ps-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--green); color: white;
+    font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 15px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .ps-titles { flex: 1; direction: rtl; text-align: right; }
+  .ps-titles h3 { font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 1px; }
+  .ps-titles small { font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; color: var(--text-muted); }
+  .ps-body { padding: 14px 16px; }
+
+  /* Screen mockup */
+  .screen-mock {
+    background: var(--bg-secondary); border: 0.5px solid var(--border);
+    border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 10px;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 12px;
+  }
+  .mock-bar { height: 4px; width: 120px; background: var(--green); border-radius: 2px; margin-bottom: 12px; }
+  .mock-label { font-size: 10px; color: var(--text-muted); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .mock-field {
+    background: var(--bg); border: 0.5px solid var(--border); border-radius: 6px;
+    padding: 7px 10px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px;
+  }
+  .mock-btn {
+    background: var(--green); color: white; border: none; padding: 8px 18px;
+    border-radius: 50px; font-size: 12px; font-weight: 500; display: inline-block; margin-top: 4px;
+  }
+  .mock-link { color: var(--green); font-size: 12px; text-decoration: underline; cursor: pointer; }
+
+  /* Arabic instructions */
+  .ar-instruct { direction: rtl; text-align: right; font-family: 'Cairo', sans-serif; }
+  .ar-instruct p { font-size: 13px; color: var(--text-muted); line-height: 1.9; margin-bottom: 4px; }
+  .ar-instruct .highlight {
+    background: var(--green-light); color: var(--green-dark); padding: 2px 7px;
+    border-radius: 4px; font-weight: 600; font-size: 12px; direction: ltr; display: inline-block;
+  }
+  .ar-instruct .warn {
+    background: var(--amber-light); color: var(--amber-dark); padding: 3px 8px;
+    border-radius: 4px; font-size: 12px; display: inline-block; margin-top: 4px; font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+  }
+  .tip-box {
+    background: var(--blue-light); border: 0.5px solid var(--blue-mid);
+    border-radius: var(--radius-md); padding: 10px 13px; margin-top: 8px;
+    direction: rtl; text-align: right;
+  }
+  .tip-box p { font-family: 'Cairo', sans-serif; font-size: 12px; color: var(--blue-dark); line-height: 1.8; }
+
+  /* Simple ar-card for How tab */
+  .ar-card {
+    background: var(--bg); border: 0.5px solid var(--border-soft);
+    border-radius: var(--radius-lg); padding: 1.1rem 1.35rem; margin-bottom: 10px;
+    direction: rtl; text-align: right;
+  }
+  .ar-card-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-direction: row-reverse; }
+  .snum {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--green); color: white;
+    font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 13px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .ar-card h3 { font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); }
+  .ar-card p { font-family: 'Cairo', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.85; margin-bottom: 6px; }
+  .en-note {
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; color: var(--text-muted);
+    direction: ltr; text-align: left; margin-top: 8px; padding-top: 8px;
+    border-top: 0.5px solid var(--border-soft); opacity: 0.7;
+  }
+
+  /* FAQ */
+  .faq-item {
+    background: var(--bg); border: 0.5px solid var(--border-soft);
+    border-radius: var(--radius-md); margin-bottom: 8px; overflow: hidden;
+  }
+  .faq-q {
+    padding: 13px 15px; font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--text); direction: rtl; text-align: right; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    user-select: none;
+  }
+  .faq-q:hover { background: var(--bg-secondary); }
+  .faq-a {
+    display: none; padding: 0 15px 13px; font-family: 'Cairo', sans-serif; font-size: 13px;
+    color: var(--text-muted); direction: rtl; text-align: right; line-height: 1.9;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-chev { transition: transform 0.2s; font-size: 14px; flex-shrink: 0; }
+  .faq-item.open .faq-chev { transform: rotate(180deg); }
+
+  /* Glossary */
+  .glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .glossary-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 10px 12px; direction: rtl; text-align: right; }
+  .glossary-ar { font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 14px; color: var(--text); }
+  .glossary-en { font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; color: var(--green); font-weight: 500; margin: 2px 0; direction: ltr; text-align: left; }
+  .glossary-def { font-family: 'Cairo', sans-serif; font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 3px; }
+
+  /* Buttons */
+  .kiva-link-btn {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: white;
+    border: none; padding: 9px 18px; border-radius: 50px; font-size: 13px; font-weight: 500;
+    cursor: pointer; margin-top: 6px; transition: opacity 0.15s; font-family: 'Cairo', sans-serif;
+    text-decoration: none;
+  }
+  .kiva-link-btn:hover { opacity: 0.88; }
+
+  /* Footer */
+  .footer {
+    text-align: center; margin-top: 2rem; font-family: 'Cairo', sans-serif;
+    font-size: 12px; color: var(--text-muted); line-height: 1.8;
+  }
+
+  @media (max-width: 480px) {
+    .kiva-header { flex-direction: column; align-items: flex-start; }
+    .stat-row { flex-wrap: wrap; }
+    .glossary-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kiva-header">
+    <div class="klogo">
+      <div class="klogo-icon">K</div>
+      <span class="klogo-text">Kiva.org</span>
+    </div>
+    <div class="kiva-header-ar">
+      <strong>دليل كيفا بالعربية</strong>
+      ساعد شخصاً ما في بناء مستقبله بقرض صغير
+    </div>
+  </div>
+
+  <div class="lang-notice">
+    <i class="ti ti-language lang-notice-icon" aria-hidden="true"></i>
+    <div class="lang-notice-text">
+      <strong>تنبيه: الموقع باللغة الإنجليزية فقط</strong>
+      موقع Kiva.org مكتوب بالإنجليزية. هذا الدليل يشرح لك كل خطوة بالعربية حتى تتمكن من استخدامه بسهولة دون الحاجة لإتقان اللغة. يمكنك أيضاً استخدام خاصية الترجمة التلقائية في متصفح Google Chrome: اضغط بزر الفأرة الأيمن على الصفحة ← اختر "ترجمة إلى العربية".
+    </div>
+  </div>
+
+  <div class="link-banner">
+    <div class="link-banner-ar">
+      زيارة الموقع الرسمي
+      <span>kiva.org — مكتوب بالإنجليزية</span>
+    </div>
+    <a class="link-banner-btn" href="https://www.kiva.org" target="_blank" rel="noopener">
+      <i class="ti ti-external-link" aria-hidden="true"></i> افتح Kiva.org
+    </a>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card"><div class="stat-num">2.1M+</div><div class="stat-label">مُقرض حول العالم</div></div>
+    <div class="stat-card"><div class="stat-num">$25</div><div class="stat-label">الحد الأدنى للقرض</div></div>
+    <div class="stat-card"><div class="stat-num">96%</div><div class="stat-label">نسبة السداد</div></div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('profile',this)"><i class="ti ti-user-plus" aria-hidden="true"></i> إنشاء حساب</button>
+    <button class="tab-btn" onclick="switchTab('how',this)"><i class="ti ti-list-check" aria-hidden="true"></i> كيف تُقرض</button>
+    <button class="tab-btn" onclick="switchTab('faq',this)"><i class="ti ti-help-circle" aria-hidden="true"></i> أسئلة شائعة</button>
+    <button class="tab-btn" onclick="switchTab('glossary',this)"><i class="ti ti-book" aria-hidden="true"></i> مصطلحات</button>
+  </div>
+
+  <!-- PANEL: Profile -->
+  <div id="panel-profile" class="panel active">
+
+    <div class="profile-step">
+      <div class="ps-header">
+        <div class="ps-num">١</div>
+        <div class="ps-titles"><h3>افتح صفحة التسجيل</h3><small>Open the registration page</small></div>
+      </div>
+      <div class="ps-body">
+        <div class="screen-mock">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">kiva.org — شريط العنوان في متصفحك</div>
+          <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--text);display:flex;align-items:center;gap:6px;">
+            <i class="ti ti-lock" style="font-size:12px;color:var(--green);" aria-hidden="true"></i> https://www.kiva.org
+          </div>
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center;">
+            <div class="mock-btn" style="margin-top:0;">Sign up</div>
+            <div style="font-size:11px;color:var(--text-muted);">← ابحث عن هذا الزر في أعلى الصفحة</div>
+          </div>
+        </div>
+        <div class="ar-instruct">
+          <p>اذهب إلى <span class="highlight">www.kiva.org</span> في متصفحك.</p>
+          <p>في الشريط العلوي ستجد زر <span class="highlight">Sign up</span> (معناه: سجّل). اضغط عليه.</p>
+          <p>أو اضغط مباشرة على الرابط أدناه:</p>
+        </div>
+        <a class="kiva-link-btn" href="https://www.kiva.org/register" target="_blank" rel="noopener">
+          <i class="ti ti-external-link" aria-hidden="true"></i> اذهب لصفحة التسجيل
+        </a>
+      </div>
+    </div>
+
+    <div class="profile-step">
+      <div class="ps-header">
+        <div class="ps-num">٢</div>
+        <div class="ps-titles"><h3>أدخل بريدك الإلكتروني وكلمة المرور</h3><small>Enter your email and password</small></div>
+      </div>
+      <div class="ps-body">
+        <div class="screen-mock">
+          <div class="mock-bar"></div>
+          <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:12px;">Create your Kiva account</div>
+          <div class="mock-label">Email address</div>
+          <div class="mock-field">example@gmail.com</div>
+          <div class="mock-label">Password</div>
+          <div class="mock-field">••••••••</div>
+          <div class="mock-label">Confirm password</div>
+          <div class="mock-field">••••••••</div>
+          <div class="mock-btn">Create account</div>
+        </div>
+        <div class="ar-instruct">
+          <p><span class="highlight">Email address</span> ← أدخل بريدك الإلكتروني</p>
+          <p><span class="highlight">Password</span> ← اختر كلمة مرور (8 أحرف على الأقل)</p>
+          <p><span class="highlight">Confirm password</span> ← أعد كتابة كلمة المرور للتأكيد</p>
+          <p>ثم اضغط <span class="highlight">Create account</span> (أي: إنشاء حساب)</p>
+          <div class="tip-box"><p><i class="ti ti-bulb" aria-hidden="true"></i> يمكنك أيضاً الضغط على <strong>Continue with Google</strong> لتسجيل الدخول بحساب Gmail مباشرة دون كلمة مرور جديدة.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-step">
+      <div class="ps-header">
+        <div class="ps-num">٣</div>
+        <div class="ps-titles"><h3>تحقق من بريدك الإلكتروني</h3><small>Verify your email</small></div>
+      </div>
+      <div class="ps-body">
+        <div class="screen-mock">
+          <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:8px;">📧 Check your email</div>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.7;">We sent a confirmation link to your email address. Click the link to verify your account.</div>
+          <div class="mock-btn" style="margin-top:10px;">Resend email</div>
+        </div>
+        <div class="ar-instruct">
+          <p>بعد التسجيل، سيرسل لك كيفا رسالة بريد إلكتروني.</p>
+          <p>افتح بريدك وابحث عن رسالة من <span class="highlight">no-reply@kiva.org</span></p>
+          <p>اضغط على الرابط داخل الرسالة لتأكيد حسابك.</p>
+          <div class="warn">⚠ إذا لم تجد الرسالة، تحقق من مجلد البريد المزعج (Spam)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-step">
+      <div class="ps-header">
+        <div class="ps-num">٤</div>
+        <div class="ps-titles"><h3>أكمل ملفك الشخصي</h3><small>Complete your profile</small></div>
+      </div>
+      <div class="ps-body">
+        <div class="screen-mock">
+          <div class="mock-bar"></div>
+          <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:12px;">Tell us about yourself</div>
+          <div class="mock-label">First name</div>
+          <div class="mock-field">محمد</div>
+          <div class="mock-label">Last name</div>
+          <div class="mock-field">الأحمد</div>
+          <div class="mock-label">Country</div>
+          <div class="mock-field">Jordan ▾</div>
+          <div class="mock-btn">Save and continue</div>
+        </div>
+        <div class="ar-instruct">
+          <p><span class="highlight">First name</span> ← اسمك الأول</p>
+          <p><span class="highlight">Last name</span> ← اسم العائلة</p>
+          <p><span class="highlight">Country</span> ← اختر بلدك من القائمة</p>
+          <p>اضغط <span class="highlight">Save and continue</span> (أي: احفظ وتابع)</p>
+          <div class="tip-box"><p><i class="ti ti-info-circle" aria-hidden="true"></i> يمكنك كتابة اسمك بالعربية أو بالإنجليزية — كلاهما مقبول.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-step">
+      <div class="ps-header">
+        <div class="ps-num">٥</div>
+        <div class="ps-titles"><h3>أضف صورة (اختياري)</h3><small>Add a profile photo — optional</small></div>
+      </div>
+      <div class="ps-body">
+        <div class="screen-mock">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:var(--bg-secondary);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;">
+              <i class="ti ti-user" style="font-size:20px;color:var(--text-muted);" aria-hidden="true"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:500;color:var(--text);">Upload a photo</div>
+              <div style="font-size:11px;color:var(--text-muted);">JPG or PNG, max 5MB</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <div class="mock-btn" style="margin-top:0;">Upload photo</div>
+            <span class="mock-link">Skip for now</span>
+          </div>
+        </div>
+        <div class="ar-instruct">
+          <p>يمكنك رفع صورة شخصية اختيارياً.</p>
+          <p>اضغط <span class="highlight">Upload photo</span> لرفع صورة من جهازك.</p>
+          <p>أو اضغط <span class="highlight">Skip for now</span> (أي: تخطَّ الآن) إذا لم تُرد إضافة صورة.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-step">
+      <div class="ps-header">
+        <div class="ps-num">٦</div>
+        <div class="ps-titles"><h3>حسابك جاهز — ابدأ الإقراض!</h3><small>Account ready — start lending!</small></div>
+      </div>
+      <div class="ps-body">
+        <div class="screen-mock" style="text-align:center;padding:16px;">
+          <i class="ti ti-circle-check" style="font-size:36px;color:var(--green);" aria-hidden="true"></i>
+          <div style="font-size:13px;font-weight:500;color:var(--text);margin-top:8px;">Welcome to Kiva!</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Your account is ready. Start making an impact.</div>
+          <div class="mock-btn" style="margin-top:12px;">Start lending</div>
+        </div>
+        <div class="ar-instruct">
+          <p>تهانينا! حسابك على كيفا جاهز تماماً.</p>
+          <p>اضغط على <span class="highlight">Start lending</span> (أي: ابدأ الإقراض) للبحث عن شخص تساعده.</p>
+        </div>
+        <a class="kiva-link-btn" href="https://www.kiva.org/lend" target="_blank" rel="noopener">
+          <i class="ti ti-heart" aria-hidden="true"></i> تصفح المقترضين الآن
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /panel-profile -->
+
+  <!-- PANEL: How -->
+  <div id="panel-how" class="panel">
+    <div class="ar-card">
+      <div class="ar-card-hd"><div class="snum">١</div><h3>ما هو كيفا؟</h3></div>
+      <p>كيفا منصة إقراض عالمية غير ربحية تتيح لك إقراض مبالغ صغيرة ابتداءً من 25 دولاراً لأشخاص محتاجين حول العالم — رجال أعمال صغار، مزارعون، طلاب، وعائلات. قرضك لا يُعطى بل يُعار — وعادةً ما تسترد المال بعد السداد.</p>
+      <div class="en-note">Kiva is a nonprofit lending platform. Loans from $25, repaid over time.</div>
+    </div>
+    <div class="ar-card">
+      <div class="ar-card-hd"><div class="snum">٢</div><h3>تصفح المقترضين</h3></div>
+      <p>بعد تسجيل الدخول اضغط على <strong>Lend</strong> في أعلى الصفحة. ستجد قصصاً حقيقية لأشخاص يحتاجون التمويل. يمكنك الفلترة حسب البلد، الجنس، القطاع (زراعة، تعليم، أعمال...).</p>
+      <a class="kiva-link-btn" href="https://www.kiva.org/lend" target="_blank" rel="noopener"><i class="ti ti-users" aria-hidden="true"></i> تصفح المقترضين</a>
+    </div>
+    <div class="ar-card">
+      <div class="ar-card-hd"><div class="snum">٣</div><h3>اختر وادفع</h3></div>
+      <p>اضغط على قصة تلفت انتباهك ← اضغط <strong>Lend Now</strong> ← اختر المبلغ (الحد الأدنى $25) ← اضغط <strong>Checkout</strong> وادفع ببطاقة بنكية أو PayPal.</p>
+      <div class="en-note">Click a profile → Lend Now → Choose amount → Checkout.</div>
+    </div>
+    <div class="ar-card">
+      <div class="ar-card-hd"><div class="snum">٤</div><h3>تابع قرضك</h3></div>
+      <p>ستصلك تحديثات بالبريد الإلكتروني. عند السداد يُضاف المال لرصيدك ويمكنك إعادة إقراضه لشخص آخر أو سحبه.</p>
+      <div class="en-note">Track repayments in your dashboard → Relend or withdraw.</div>
+    </div>
+  </div>
+
+  <!-- PANEL: FAQ -->
+  <div id="panel-faq" class="panel">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">هل الموقع باللغة العربية؟<span class="faq-chev"><i class="ti ti-chevron-down" aria-hidden="true"></i></span></div>
+      <div class="faq-a">لا، الموقع بالإنجليزية فقط. لكن هذا الدليل يشرح كل خطوة بالعربية. يمكنك أيضاً ترجمة الصفحات تلقائياً عبر متصفح Chrome: اضغط بزر الفأرة الأيمن على الصفحة ← "ترجمة إلى العربية".</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">هل أسترد أموالي؟<span class="faq-chev"><i class="ti ti-chevron-down" aria-hidden="true"></i></span></div>
+      <div class="faq-a">نعم، في الغالب. معدل السداد 96%. لكن هناك خطر بسيط من عدم السداد — لذا لا تُقرض مالاً تحتاجه بشكل أساسي.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">هل هناك فوائد أو مكاسب مالية؟<span class="faq-chev"><i class="ti ti-chevron-down" aria-hidden="true"></i></span></div>
+      <div class="faq-a">لا. كيفا منصة غير ربحية. لا تكسب فائدة على قروضك — الغاية هي الأثر الإنساني وليس الربح المادي.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">هل يمكنني الإقراض من دول عربية؟<span class="faq-chev"><i class="ti ti-chevron-down" aria-hidden="true"></i></span></div>
+      <div class="faq-a">نعم. الموقع مفتوح لأي شخص لديه بطاقة بنكية دولية أو حساب PayPal. يمكنك أيضاً تصفية المقترضين واختيار أشخاص من الدول العربية.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">هل يمكنني تحديد من أُقرض؟<span class="faq-chev"><i class="ti ti-chevron-down" aria-hidden="true"></i></span></div>
+      <div class="faq-a">نعم تماماً. أنت تختار القصة بنفسك — المرأة الريفية، الشاب الطموح، المزارع، الطالب. قرارك الكامل.</div>
+    </div>
+  </div>
+
+  <!-- PANEL: Glossary -->
+  <div id="panel-glossary" class="panel">
+    <div class="glossary-grid">
+      <div class="glossary-card"><div class="glossary-ar">Sign up</div><div class="glossary-en">Registration</div><div class="glossary-def">إنشاء حساب جديد</div></div>
+      <div class="glossary-card"><div class="glossary-ar">Log in</div><div class="glossary-en">Login</div><div class="glossary-def">تسجيل الدخول لحساب موجود</div></div>
+      <div class="glossary-card"><div class="glossary-ar">Lend Now</div><div class="glossary-en">Lend Now</div><div class="glossary-def">زر الإقراض على صفحة المقترض</div></div>
+      <div class="glossary-card"><div class="glossary-ar">Checkout</div><div class="glossary-en">Checkout</div><div class="glossary-def">إتمام عملية الدفع</div></div>
+      <div class="glossary-card"><div class="glossary-ar">مُقرض</div><div class="glossary-en">Lender</div><div class="glossary-def">الشخص الذي يمنح القرض — أنت</div></div>
+      <div class="glossary-card"><div class="glossary-ar">مقترض</div><div class="glossary-en">Borrower</div><div class="glossary-def">الشخص الذي يتلقى القرض</div></div>
+      <div class="glossary-card"><div class="glossary-ar">Repayment</div><div class="glossary-en">Repayment</div><div class="glossary-def">سداد القرض من المقترض</div></div>
+      <div class="glossary-card"><div class="glossary-ar">Kiva Credit</div><div class="glossary-en">Kiva Credit</div><div class="glossary-def">رصيد جاهز لإعادة الإقراض</div></div>
+    </div>
+    <div style="margin-top:1rem;">
+      <a class="kiva-link-btn" href="https://www.kiva.org/lend/filter?sortBy=popularity" target="_blank" rel="noopener">
+        <i class="ti ti-external-link" aria-hidden="true"></i> ابدأ الإقراض على كيفا الآن
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>هذا الدليل غير رسمي وغير مرتبط بـ Kiva.org — أُنشئ لمساعدة الناطقين بالعربية</p>
+    <p style="margin-top:4px;">This is an unofficial Arabic guide to Kiva.org · Not affiliated with Kiva</p>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
